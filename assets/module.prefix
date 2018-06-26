@@ -1,0 +1,5 @@
+module.exports = `
+var i = require('incremental-dom');
+
+export default function(data) {
+`.trim();
