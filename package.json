@@ -1,6 +1,6 @@
 {
   "name": "incremental-dom-loader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An incremental-dom loader for webpack. It compiles an HTML file into an incremental-dom script",
   "main": "index.js",
   "scripts": {
