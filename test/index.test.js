@@ -12,21 +12,15 @@ const suffix = require('../assets/module.suffix');
 describe('The index module', function() {
 
   let mut;
-  let parse5;
-  let tree;
+  let parser;
 
   beforeEach(function(done) {
-    tree = {};
-
-    parse5 = {
-      parse: sinon.stub()
-    };
-    parse5.parse.returns('a parsed html');
+    parser = sinon.stub();
+    parser.returns('a parsed html');
 
     mut = sm.require('../lib/index', {
       requires: {
-        parse5: parse5,
-        './tree': tree
+        './parser': parser
       }
     });
     done();
@@ -34,7 +28,7 @@ describe('The index module', function() {
 
   it('should parse the html and append prefix and suffix', function(done) {
     expect(mut('some html')).to.be.equal(`${ prefix }a parsed html${ suffix }`);
-    expect(parse5.parse).to.be.calledWithExactly('some html', tree);
+    expect(parser).to.be.calledWithExactly('some html');
 
     done();
   });

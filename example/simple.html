@@ -1,0 +1,9 @@
+<h1>Hello!</h1>
+
+<dom-if test="${ state.check() }">
+  <dom-loop items="${ state.items }">
+    <h2>${ current.title }</h2>
+    <p>${ current.text }</p>
+    <button onclick="${ state.love }">Show Love!</button>
+  </dom-loop>
+</dom-if>
