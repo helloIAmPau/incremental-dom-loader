@@ -6,6 +6,7 @@
 
 # incremental-dom-loader
 [![Build Status](https://travis-ci.org/helloIAmPau/incremental-dom-loader.svg?branch=master)](https://travis-ci.org/helloIAmPau/incremental-dom-loader)
+![npm](https://img.shields.io/npm/v/incremental-dom-loader.svg)
 
 An incremental-dom loader for webpack. It compiles an HTML file into an incremental-dom script.
 
