@@ -1,5 +1,5 @@
 module.exports = `
 var id = require('incremental-dom');
 
-export default function(state) {
+module.exports = function(state) {
 `.trim();
