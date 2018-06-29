@@ -76,7 +76,7 @@ describe('The adapter module', function() {
     });
     adapter.onclosetag('dom-loop');
 
-    expect(state[0]).to.be.equal('for(const key of Object.keys(someItems)) { const value = someItems[key]');
+    expect(state[0]).to.be.equal('for(const key of Object.keys(someItems)) { const value = someItems[key];');
     expect(state[1]).to.be.equal('}');
 
     done();
