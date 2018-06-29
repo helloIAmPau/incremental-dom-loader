@@ -76,8 +76,25 @@ describe('The adapter module', function() {
     });
     adapter.onclosetag('dom-loop');
 
-    expect(state[0]).to.be.equal('for(const current of someItems) {');
+    expect(state[0]).to.be.equal('for(const key of Object.keys(someItems)) { const value = items[key]');
     expect(state[1]).to.be.equal('}');
+
+    done();
+  });
+
+  it('should append the key to the id when opening a node in a loop', function(done) {
+    adapter.onopentag('dom-loop', {
+      items: '${ someItems }'
+    });
+    adapter.onopentag('standard', {});
+    adapter.onclosetag('standard');
+    adapter.onclosetag('dom-loop');
+    adapter.onopentag('another-standard', {});
+    adapter.onclosetag('another-standard');
+
+
+    expect(state[1]).to.be.equal('  id.elementOpen(\'standard\', `a44a1-${ key }`, []);');
+    expect(state[4]).to.be.equal('id.elementOpen(\'another-standard\', \'a44a1\', []);');
 
     done();
   });
