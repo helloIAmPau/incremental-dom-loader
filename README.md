@@ -153,3 +153,7 @@ for(const key of Object.keys(state.items)) {
   // ...
 }
 ```
+
+## License
+
+#### [MIT](./LICENSE)
