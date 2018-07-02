@@ -18,7 +18,7 @@ Install `incremental-dom-loader` via `npm`:
 $ npm install --save-dev incremental-dom-loader
 ```
 
-then add the it to your `webpack.config.js`:
+then add it to your `webpack.config.js`:
 
 ```js
 module.exports = {
@@ -69,7 +69,7 @@ patch(root, function() {
 `incremental-dom-loader` levereges on [htmlparser2](https://github.com/fb55/htmlparser2) for the HTML code parsing.
 The build process follows the following rules:
 
-* Add static suffix/prefix to the code including `incremental-dom` requires and `exports`,
+* Static suffix/prefix are added to the code including `incremental-dom` requires and `exports`,
 * An open tag is converted into:
 ```js
 id.elementOpen('tagName', 'an unique id', [ 'static', 'attribute' ], 'dynamic', 'attribute');
@@ -83,7 +83,9 @@ id.text(`Hello!`);
 id.elementClose('tagName');
 ```
 
-Moreover `incremental-dom-loader` provides a template engine system based on the ES6 template literals.
+## Template
+
+`incremental-dom-loader` provides a template engine system based on the ES6 template literals.
 
 ```html
 <h1>Hello!</h1>
