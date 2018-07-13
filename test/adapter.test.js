@@ -39,21 +39,21 @@ describe('The adapter module', function() {
   });
 
   it('should open a tag', function(done) {
-    adapter.onopentag('some-tag', {
+    adapter.onopentag('sometag', {
       staticAttr: 'with text',
       dynText: '${ with.dots.varName } static text',
       mulDynText: '${ varName } static text ${ otherVarName }',
       onlyVar: '${ otherVar }'
     });
-    expect(state[0]).to.be.equal('id.elementOpen(\'some-tag\', \'a44a1\', [\'staticAttr\', \'with text\'], \'dynText\', `${ with.dots.varName } static text`, \'mulDynText\', `${ varName } static text ${ otherVarName }`, \'onlyVar\', otherVar);');
+    expect(state[0]).to.be.equal('id.elementOpen(\'sometag\', \'a44a1\', [\'staticAttr\', \'with text\'], \'dynText\', `${ with.dots.varName } static text`, \'mulDynText\', `${ varName } static text ${ otherVarName }`, \'onlyVar\', otherVar);');
 
     done();
   });
 
   it('should close a tag', function(done) {
-    adapter.onopentag('some-tag', {});
-    adapter.onclosetag('some-tag');
-    expect(state[1]).to.be.equal('id.elementClose(\'some-tag\');');
+    adapter.onopentag('sometag', {});
+    adapter.onclosetag('sometag');
+    expect(state[1]).to.be.equal('id.elementClose(\'sometag\');');
 
     done();
   });
@@ -89,12 +89,12 @@ describe('The adapter module', function() {
     adapter.onopentag('standard', {});
     adapter.onclosetag('standard');
     adapter.onclosetag('dom-loop');
-    adapter.onopentag('another-standard', {});
-    adapter.onclosetag('another-standard');
+    adapter.onopentag('anotherstandard', {});
+    adapter.onclosetag('anotherstandard');
 
 
     expect(state[1]).to.be.equal('  id.elementOpen(\'standard\', `a44a1-${ key }`, []);');
-    expect(state[4]).to.be.equal('id.elementOpen(\'another-standard\', \'a44a1\', []);');
+    expect(state[4]).to.be.equal('id.elementOpen(\'anotherstandard\', \'a44a1\', []);');
 
     done();
   });
@@ -113,6 +113,13 @@ describe('The adapter module', function() {
     expect(state[3]).to.be.equal('    id.text(`second text`);');
     expect(state[4]).to.be.equal('  id.elementClose(\'second\');');
     expect(state[5]).to.be.equal('id.elementClose(\'first\');');
+
+    done();
+  });
+
+  it('should skip body on custom elements', function(done) {
+    adapter.onopentag('custom-element', {});
+    expect(state[0]).to.be.equal('id.elementOpen(\'custom-element\', \'a44a1\', []);\n  id.skip();');
 
     done();
   });
